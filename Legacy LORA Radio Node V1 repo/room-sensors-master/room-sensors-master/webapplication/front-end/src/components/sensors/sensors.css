@@ -1,0 +1,43 @@
+/*#map {
+    border: 1px solid darkgrey;
+}*/
+
+#map {
+    transition: background-image 0.5s ease-in-out;
+}
+
+#map.one {
+    background-image: url("../../images/Floor_1.svg");
+    background-repeat: no-repeat;
+    width: 1140px;
+    height: 850px;
+    border: 2px solid;
+}
+
+#map.two {
+    background-image: url("../../images/Floor_2.svg");
+    background-repeat: no-repeat;
+    width: 1140px;
+    height: 850px;
+}
+
+#map.hub {
+    background-image: url("../../images/hub-floorplan-01.svg");
+    background-repeat: no-repeat;
+    width: 1140px;
+    height: 850px;
+    border: 2px solid;
+}
+
+circle:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+circle {
+    opacity: 0.8;
+}
+
+span.reading {
+    display: block;
+}

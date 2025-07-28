@@ -1,0 +1,39 @@
+version: '3'  
+services:  
+  roomsensors-nginx:
+    image: nginx:alpine
+    container_name: roomsensors-nginx
+    networks:
+      - RoomSensors
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./front-end/build/static:/static
+    ports:
+      - "8000"
+    depends_on:
+      - roomsensors-web
+    networks:
+      - RoomSensors
+      - proxy
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  roomsensors-web:
+    environment:
+      - DJANGO_SETTINGS_MODULE=heatmap.settings
+    build: .
+    container_name: roomsensors-web
+    volumes:
+      - ${HOME}/data/RoomSensors/db.sqlite3:/usr/src/app/db.sqlite3
+    ports:
+      - "8000"
+    networks:
+      - RoomSensors
+
+networks:
+  RoomSensors:
+  proxy:
+    external:
+      name: proxy
+   

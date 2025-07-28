@@ -1,0 +1,30 @@
+# Environments
+venv/
+.idea/
+
+#DB
+db.sqlite3
+
+#Front-end
+# dependencies
+front-end/node_modules
+
+# testing
+front-end/coverage
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pyc
+secrets.py
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#ignore build folder from react app
+front-end/build

@@ -1,0 +1,14 @@
+.busy.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.btn-admin, .pull-right {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.container {
+    padding: 0;
+}
