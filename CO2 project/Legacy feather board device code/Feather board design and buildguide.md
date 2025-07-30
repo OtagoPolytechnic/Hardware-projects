@@ -1,4 +1,4 @@
-### TAKEN FROM WEATHER STATION REPO MAY
+### TAKEN FROM WEATHER STATION REPO, CODE REFRENCES MAY NEED UPDATING
 
 We were tasked with assisting Martin's CO2 project with new sensors, including testing/verifying existing ones and ensuring any new ones are giving correct readings.
 
