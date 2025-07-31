@@ -1,0 +1,93 @@
+Irrigation App
+--------------
+
+Version 1:
+ - Measures the soil moisture for any given plant and, based on a threshold, determines if the plant needs watering
+ - Photoresistor used to detect light level OR humidity sensor
+ - Light turns on to let plant owner know that it needs watering/environment change
+ - LCD screen displays moisture and environment, if it's dispensing water, ON/OFF, and plant name
+ - Watchdog timer and FSM
+
+Version 2:
+ - A pump dispenses water based on the threshold
+ - Buttons for user interation/changing info displayed on screen/on and off
+
+Version 3:
+ - App that sends and receives plant data
+ - Arduinos sending/receiving plant info/commands based on plant info from plantapi
+ - Dispensing water based on received command/info
+
+Version 4 (USB Serial communication):
+ - 3D Printed arduino case that allows for clipping on and a pot
+ 
+ 
+Watchdog:
+Environmental Factors: 
+In harsh environments where the system may be exposed to extreme temperatures, radiation, or other adverse conditions, 
+a watchdog timer can help maintain system stability by resetting the system if it malfunctions due to environmental factors.
+
+
+ 
+Things to think about:
+----------------------
+	Pump water into a section of the pot or try 'bottom watering' which could be easier?
+
+Shopping List:
+--------------
+1x LED						x1
+Arduino Nano		     	x1
+Plastic for 3D print (?)
+Soil moisture sensor		x1
+12V Pump					x1
+Water level sensor 			x1
+Vinyl tube					x1
+Transistor 					x1
+5k Ohm Resistor				x1
+1k Ohm Resistor				x1
+12V DC Power Adaptor		x1
+DC Socket Adaptor			x1
+
+
+
+
+Arduino Nano:					https://www.jaycar.co.nz/arduino-compatible-nano-board/p/XC4414
+Soil Moisture Sensor: 			https://www.jaycar.co.nz/duinotech-arduino-compatible-soil-moisture-sensor-module/p/XC4604
+Pump:     		  				https://www.dicksmith.co.nz/dn/buy/zoestore-42w-mini-brushless-submersible-water-pump-for-fish-tank-aquarium-h15455/
+Tube:             				https://www.bunnings.co.nz/pope-clear-vinyl-tubing-3mm-x-5m_p0235184
+Socket Adaptor:    				https://www.jaycar.co.nz/21mm-dc-socket-with-screw-terminals/p/PA3713
+Power Supply:     				https://www.dicksmith.co.nz/dn/buy/snap-deal-12v-1a-power-supply-ac-to-dc-adapter-7955281543409/
+Water level sens: 				https://epartners.co.nz/products/mp7006
+
+
+DIY kit ??? 	https://www.dicksmith.co.nz/dn/buy/hod-health-home-nz-diy-automatic-irrigation-module-kit-with-soil-moisture-sensor-detection-automatic-watering-pumping-graphite-black-standard-66100308144471/?utm_source=google&utm_medium=product_listing_ads&gad_source=1&gclid=EAIaIQobChMI0NuU8Ma0hgMVw6RmAh0eFgOKEAQYASABEgIGOvD_BwE
+
+
+Concepts Needed:
+ - Watchdog timer
+ - Interrupt (?)
+ - On/off button
+ - 
+ 
+Small Scope Shopping List:
+--------------------------
+30cm LED Strip				x1
+Arduino Nano		     	x1
+PLE for 3D print (?)
+Soil moisture sensor		x2
+12V Pump					x1
+Water level sensor 			x1
+Vinyl tube					x1
+Transistor 					x1
+5k Ohm Resistor				x1
+12V DC Power Adaptor		x1
+DC Socket Adaptor			x1
+PCB Soldering Board			x2
+
+
+Arduino Nano:					https://www.trademe.co.nz/a/marketplace/electronics-photography/other-electronics/electronic-components/other/listing/4737840312?gad_source=1&gclid=EAIaIQobChMI3pT9h-bChgMViZG5BR1nVwHTEAQYAiABEgKiqfD_BwE&gclsrc=aw.ds
+Soil Moisture Sensor: 			https://www.jaycar.co.nz/duinotech-arduino-compatible-soil-moisture-sensor-module/p/XC4604
+Pump:     		  				https://www.dicksmith.co.nz/dn/buy/zoestore-42w-mini-brushless-submersible-water-pump-for-fish-tank-aquarium-h15455/
+Tube:             				https://www.bunnings.co.nz/pope-clear-vinyl-tubing-3mm-x-5m_p0235184
+Socket Adaptor:    				https://www.jaycar.co.nz/21mm-dc-socket-with-screw-terminals/p/PA3713
+Power Supply:     				https://www.dicksmith.co.nz/dn/buy/snap-deal-12v-1a-power-supply-ac-to-dc-adapter-7955281543409/
+Water level sens: 				https://epartners.co.nz/products/mp7006

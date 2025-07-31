@@ -1,0 +1,33 @@
+Started by wiring an LED strip to see how it works.
+Then, added a button that turns it on/off using an FSM.
+	- Decided to use FSM as it'll be more flexible than an interrupt when I add more buttons/hardware
+	- had trouble with the FSM for 1 button doing more than one thing
+
+Once that was working, wired a LCD I2C component and printed a basic string
+	- ez
+
+Then, added the screen turning on/off with the same button press
+	- Coding this was pretty simple now that the FSM had already been set up with the same button
+	- Mostly just moving FSM code into separate transition methods and making a transition for the screen
+	- Displayed simple message like turning off/on and welcome to smart pot when on
+
+Since I hadn't received parts at the start of week 14 when I was working on the minimum scope, I decided to work with
+adding sensors that I had on me that could be included in the scope. I decided a humidity and temp sensor would be perfect.
+	- Never worked with the DHT11 before this, so this was a first time experience
+	- Was a little difficult finding a source with working information, but I found it in the end
+	- The wiring for my DHT11 was different to sources online, which made calculations fail
+	- Created a method, implemented it in FSM, and it worked.
+
+Wanted to fix the flickering of the temp display
+	- I wanted the temp info to be updated and redisplayed when updated, so I delayed for 1 second
+	- This caused flickering, so I decided to only redisplay after 5 seconds and only when temp or humidity had changed
+	- This took a while to implement as trying to calculate when 5 seconds had passed since the last time was messy
+	
+Week 14 - parts received. First, connect longer LED strip. Then, connect soil moisture sensor and display soil moisture data. Lastly, connect another
+button for displaying different data
+Discussed potentially using 2 wires in water as a water level sensor w Vsaughn
+	- I connected the moisture sensor and 2 more buttons with ease
+	- 
+	
+
+	

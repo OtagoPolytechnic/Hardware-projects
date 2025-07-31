@@ -1,0 +1,31 @@
+Solenoid valve hookup vid
+https://www.youtube.com/watch?v=ioSYlxHlYdI
+
+Better Solenoid valve hookup vid
+Solenoid valve hookup vid
+
+https://techatronic.com/how-to-make-smart-irrigation-project/
+
+https://arduinogetstarted.com/tutorials/arduino-automatic-irrigation-system
+
+plant API 
+https://perenual.com/docs/api
+
+Basic sensor project
+https://projecthub.arduino.cc/Aswinth/soil-moisture-sensor-with-arduino-91c818
+
+Sensor w led and buzzer
+https://projecthub.arduino.cc/nikolaiapalis/simple-soil-moisture-sensor-ec23c7
+
+Light sensor
+https://jxxcarlson.medium.com/measuring-light-intensity-with-arduino-a575765c0862
+
+Basic irrigation project
+https://www.hackster.io/lakshyajhalani56/smart-irrigation-soil-moisture-sensor-arduino-water-pump-96030e
+
+Irrigation w Pump
+https://www.hackster.io/Techatronic/smart-irrigation-system-using-arduino-aaea36
+
+Full system
+https://www.instructables.com/Automatic-Smart-Plant-Pot-DIY-3D-Printed-Arduino-S/
+https://www.thingiverse.com/thing:3537287

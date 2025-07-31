@@ -1,0 +1,11 @@
+on/off = 2
+soil = 8
+climate = 12
+home = 4
+water = 9
+
+/ 
+sol = 10
+temp = 3
+led = 5
+moist = A0
