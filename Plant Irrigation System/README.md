@@ -8,6 +8,9 @@ A simple system that keeps track of a plant’s moisture and humidity levels wit
 
 ## Design Plan
 
+<img width="800" height="840" alt="5-more-buttons" src="https://github.com/user-attachments/assets/b9bf6377-0ab0-4c08-98a4-dcc377755bca" />
+
+
 The smart irrigation system (SIS) has a flexible scope, allowing for many different versions to be ideated. Each version was based on features we could implement and time/material constraints.
 
 **Version 1:**
@@ -48,6 +51,7 @@ Transistor 				|	x1| Hardware room |
 DC Socket Adaptor	|		x1|https://www.jaycar.co.nz/21mm-dc-socket-with-screw-terminals/p/PA3713 |
 30cm LED Strip			|	x1| Hardware room|
 Buttons    |    x4| Hardware room|
+LCD Screen | x1 |Hardware room|
 
 ## Resources
 |Description|Link|
