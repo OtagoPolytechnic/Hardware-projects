@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  wicarb:      
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wicarb
+    depends_on:
+      - wicarbdb
+    deploy:
+      restart_policy:
+        condition: always
+    networks:
+      - wicarbnetwork
+    ports:
+      - "9999:80"
+    volumes:
+      - ./:/var/www/html/
+
+  wicarbdb:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=carbon
+      - MYSQL_USER=carbonUser
+      - MYSQL_PASSWORD=carbonPassword
+      - MYSQL_ROOT_PASSWORD=carbonPassword
+    ports:
+      - "3306:3306"
+    networks:
+      - wicarbnetwork
+    volumes:
+      - db:/var/lib/mysql
+
+networks:
+  wicarbnetwork:
+
+volumes:
+  db:
