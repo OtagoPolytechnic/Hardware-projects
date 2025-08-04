@@ -1,0 +1,5 @@
+Dev Name: Tom
+Game Name: Space Fight
+ESRB Rating: T
+Controller: Keyboard
+Color: #ee4444

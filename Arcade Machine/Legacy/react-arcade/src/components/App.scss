@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+body {
+  background-color: #000;
+  background-image: url("/../assets/img/grid_ani.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.shader {
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  z-index: -999;
+  position: absolute;
+}
+
+.App {
+}
+
+// OPA styling
+.OPA {
+  display: flex;
+  justify-content: space-around;
+  background-image: url("/../assets/img/neon_title.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 15%;
+  // padding-top: 3%;
+  width: 75%;
+  height: 30vh;
+  // background-color: aqua;
+}
+
+.ageCheck {
+  // display: inline-block;
+  // justify-content: space-around;
+  width: 30vw;
+  height: auto;
+  // background-color: limegreen;
+  text-align: center;
+  margin: auto;
+  padding: 2% 0% 2% 0%;
+
+
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #00ccff,
+            0 0 0.8rem #00ccff,
+            0 0 2.8rem #00ccff,
+            inset 0 0 2.8rem #00ccff;
+}
+
+.ynButton{
+  margin: 2%;
+}
+
+.loading{
+display: none;
+}
+
+h2 {
+  animation: flicker 3s infinite alternate;
+  color: #fff;
+  font-size: 4rem;
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+// Game Tile styling
+
+#gameInfo {
+  padding: 1%;
+}
+
+.gameSelector {
+  display: flex;
+  width: 80vw;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.prevButton {
+  display: none;
+}
+
+.nextButton {
+  display: none;
+}
+
+.launchBar {
+  display: none;
+}
+
+.game-item {
+  // display: flex;
+  // justify-content: center;
+  // background-color: darkorange;
+  // width: 60vw;
+  // height: fit-content;
+  display: none;
+}
+
+.gameTile {
+  width: 60vw;
+  height: 60vh;
+  display: inline-block;
+}
+
+.gameTile img {
+  width: 100%;
+  height: 100%;
+}
+
+.gameImg {
+  width: 30vw;
+  height: auto;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.2em;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #00ccff,
+            0 0 0.8rem #00ccff,
+            0 0 2.8rem #00ccff,
+            inset 0 0 2.8rem #00ccff;
+}
+
+// End of GameInfo
+
+
+/* Flickering animation */
+@keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #00ccff,
+      0 0 80px #00ccff,
+      0 0 90px #00ccff,
+      0 0 100px #00ccff,
+      0 0 150px #00ccff;  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
