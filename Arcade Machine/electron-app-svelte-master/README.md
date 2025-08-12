@@ -1,6 +1,7 @@
 # Retro Arcade Collection
+built in 2025
 
-Retro Arcade Collection is an Electron-based application built with Svelte and Vite. It allows users to manage and launch games from a local folder.
+Retro Arcade Collection is an Electron-based application built with Svelte 4 and Vite. It allows users to manage and launch games from a local folder.
 
 ## Features
 
@@ -55,4 +56,5 @@ Retro Arcade Collection is an Electron-based application built with Svelte and V
 2)	Put in shortcuts to the game you want to add inside the “game” folder
 3)	Add PNG or JPG with the same name as the game you added to be used as cover art
 4)	Open exe
+
 
