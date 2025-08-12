@@ -1,82 +1,66 @@
 <script>
+	import { onMount } from 'svelte';
+	import SimpleCarousel from './components/SimpleCarousel.svelte';
 
-let exe1Path = '';
-let exe2Path = '';
+	let games = [];
+	let isLoading = true;
 
-function getFileName(path) {
-	if (!path) return '';
-	// Windows and Unix path support
-	return path.split(/[/\\]/).pop();
-}
+	onMount(async () => {
+		await loadGames();
+	});
 
-async function chooseExe1() {
-	exe1Path = await window.electronAPI.chooseExe();
-}
-async function chooseExe2() {
-	exe2Path = await window.electronAPI.chooseExe();
-}
-
-function openExe1() {
-	if (exe1Path) window.electronAPI.openExePath(exe1Path);
-}
-function openExe2() {
-	if (exe2Path) window.electronAPI.openExePath(exe2Path);
-}
+	async function loadGames() {
+		try {
+			games = await window.electronAPI.getGamesFromFolder();
+			isLoading = false;
+		} catch (error) {
+			console.error('Failed to load games:', error);
+			isLoading = false;
+		}
+	}
 </script>
 
-<main>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div class="app-container" tabindex="0">
+	<main>
+		<h1>Arcade</h1>
+		{#if isLoading}
+			<div class="loading">Loading...</div>
+		{/if}
 
-   <h2>{exe1Path ? getFileName(exe1Path) : 'No file chosen'}</h2>
-   <button on:click={chooseExe1}>Choose EXE 1</button>
-   <span>{exe1Path ? exe1Path : 'No file chosen'}</span>
-   <button on:click={openExe1} disabled={!exe1Path}>Open {exe1Path ? getFileName(exe1Path) : 'EXE 1'}</button>
+		{#if !isLoading && games.length === 0}
+			<div class="no-games">No games found. Please add games to the folder.</div>
+		{/if}
 
-   <h2>{exe2Path ? getFileName(exe2Path) : 'No file chosen'}</h2>
-   <button on:click={chooseExe2}>Choose EXE 2</button>
-   <span>{exe2Path ? exe2Path : 'No file chosen'}</span>
-   <button on:click={openExe2} disabled={!exe2Path}>Open {exe2Path ? getFileName(exe2Path) : 'EXE 2'}</button>
 	
-</main>
+			<SimpleCarousel {games} />
+
+	</main>
+</div>
 
 <style>
-main {
-	text-align: center;
-	padding: 1em;
-	max-width: 400px;
-	margin: 0 auto;
-}
-
-h2 {
-	color: #ff3e00;
-	text-transform: uppercase;
-	font-size: 2em;
-	font-weight: 100;
-	margin: 1em 0 0.5em 0;
-}
-
-button {
-	margin: 0.5em;
-	padding: 0.5em 1em;
-	font-size: 1em;
-	cursor: pointer;
-}
-
-button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-}
-
-span {
-	display: block;
-	margin: 0.5em;
-	font-size: 0.9em;
-	color: #666;
-	word-break: break-all;
-}
-
-@media (min-width: 640px) {
-	main {
-		max-width: none;
+	.app-container {
+		background: #1a1a2e;
+		color: #fff;
+		min-height: 100vh;
+		padding: 2em;
+		font-family: Arial, sans-serif;
+		outline: none;
 	}
-}
+
+	main {
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
+
+	h1 {
+		margin-bottom: 2em;
+		font-size: 2.5rem;
+	}
+
+	.loading, .no-games {
+		font-size: 1.5rem;
+		margin-top: 2em;
+	}
 </style>
