@@ -20,9 +20,7 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div class="app-container" tabindex="0">
-	<main>
+	<main class="app-container" >
 		<h1>Arcade</h1>
 		{#if isLoading}
 			<div class="loading">Loading...</div>
@@ -36,7 +34,6 @@
 			<SimpleCarousel {games} />
 
 	</main>
-</div>
 
 <style>
 	.app-container {
