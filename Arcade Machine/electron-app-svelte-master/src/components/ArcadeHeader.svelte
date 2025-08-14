@@ -1,5 +1,5 @@
 <script>
-	export let title = "ARCADE";
+	let title = "ARCADE";
 </script>
 
 <header class="arcade-header">
