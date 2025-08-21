@@ -26,10 +26,6 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
    ```
 3. Start the development server:
    ```bash
-   npm run dev
-   ```
-4. Build and Run the Electron application:
-   ```bash
    npm run electron
    ```
 
@@ -56,6 +52,7 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
 2)	Put in shortcuts to the Games you want to add inside the “Games” folder
 3)	Add PNG or JPG with the same name as the game you added to be used as cover art
 4)	Open exe
+
 
 
 
