@@ -56,7 +56,8 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
    <img width="668" height="374" alt="image" src="https://github.com/user-attachments/assets/88d4003d-38c3-4258-9a27-04390c51689c" />
 
 3)	Add PNG or JPG with the same name as the game you added to be used as cover art
-4)	Open exe
+4)	Open the arcade app
+
 
 
 
