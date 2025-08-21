@@ -27,7 +27,7 @@
 #include <DHT.h>
 
 // DHT sensor configuration
-#define DHT_PIN 4        // GPIO pin connected to DHT sensor data line
+#define DHT_PIN 21        // GPIO pin connected to DHT sensor data line
 #define DHT_TYPE DHT22   // Change to DHT11 if using DHT11 sensor
 
 // Initialize DHT sensor
@@ -211,7 +211,7 @@ void loop() {
     uplinkPayload[4] = 0x01; // Good reading status
     
     Serial.print(F("Payload: Temp="));
-    Serial.print(temperature);
+    Serial.print(tempInt);
     Serial.print(F("°C ("));
     Serial.print(uplinkPayload[0]);
     Serial.print(F("."));
