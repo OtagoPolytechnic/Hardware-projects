@@ -47,7 +47,8 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
    npm run electron-pack
    ```
 
-## Arcade set up for end user
+
+## Arcade set up once built 
 1)	Make a folder on the desktop called “Games”. (if you don't make it the app will make it when opened)
    <img width="98" height="116" alt="image" src="https://github.com/user-attachments/assets/e4cd6af2-11e9-4d07-b548-1af60951cb2d" />
    
