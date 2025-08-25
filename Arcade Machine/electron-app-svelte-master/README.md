@@ -17,7 +17,7 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
 - RetroArch ROM files (see supported formats below)
 
 ### Supported RetroArch ROM formats:
--  smc files (SNES ROMs)
+-  `smc` files (SNES ROMs)
 
 
 
@@ -54,6 +54,7 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
 
 4)	Open aracde softwhere 
 <img width="1197" height="784" alt="v2" src="https://github.com/user-attachments/assets/19b1c37d-b974-4d31-ada6-a8bf61238c39" />
+
 
 
 
