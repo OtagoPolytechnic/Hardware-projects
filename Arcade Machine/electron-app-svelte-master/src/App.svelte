@@ -19,25 +19,21 @@
 		}
 	}
 </script>
-
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div class="app-container" tabindex="0">
-	<main>
+	<main class="app-container" >
 		<h1>Arcade</h1>
 		{#if isLoading}
 			<div class="loading">Loading...</div>
 		{/if}
 
-		{#if !isLoading && games.length === 0}
-			<div class="no-games">No games found. Please add games to the folder.</div>
-		{/if}
 
-	
+		{#if !isLoading && games.length === 0}
+			<p class="no-games">No games found. Please add games to the Desktop/Games folder.</p>
+			<p>if you want cover art add a image with the same name as the game to the folder</p>
+
+		{/if}
 			<SimpleCarousel {games} />
 
 	</main>
-</div>
-
 <style>
 	.app-container {
 		background: #1a1a2e;

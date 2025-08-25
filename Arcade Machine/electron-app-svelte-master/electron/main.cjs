@@ -60,7 +60,7 @@ ipcMain.handle('get-games-from-folder', async () => {
   try {
     // Look for games folder on desktop
     const desktopPath = path.join(os.homedir(), 'Desktop');
-    const gamesFolder = path.join(desktopPath, 'game');
+    const gamesFolder = path.join(desktopPath, 'Games');
     
     console.log('Looking for games in:', gamesFolder);
     

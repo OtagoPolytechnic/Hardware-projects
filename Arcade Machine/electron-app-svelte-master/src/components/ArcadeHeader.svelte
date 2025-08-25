@@ -1,5 +1,6 @@
 <script>
   export let title = "ARCADE";
+
 </script>
 
 <header class="arcade-header">
