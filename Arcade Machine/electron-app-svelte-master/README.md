@@ -1,6 +1,7 @@
 # Retro Arcade Collection
+built in 2025
 
-Retro Arcade Collection is an Electron-based application built with Svelte and Vite. It allows users to manage and launch games from a local folder.
+Retro Arcade Collection is an Electron-based application built with Svelte 4 and Vite. It allows users to manage and launch games from a local folder.
 
 ## Features
 
@@ -50,7 +51,7 @@ Retro Arcade Collection is an Electron-based application built with Svelte and V
    npm run electron-pack
    ```
 
-## Arcade set up for end user
+
 1)	Make a folder on the desktop called “Games”, if there is not folder when you open the program it will make the folder
    <img width="97" height="96" alt="image" src="https://github.com/user-attachments/assets/bf456543-ed0b-470e-a43c-3b17f6d86a3c" />
    
@@ -60,5 +61,7 @@ Retro Arcade Collection is an Electron-based application built with Svelte and V
 
 4)	Open aracde softwhere 
 <img width="1197" height="784" alt="v2" src="https://github.com/user-attachments/assets/19b1c37d-b974-4d31-ada6-a8bf61238c39" />
+
+
 
 
