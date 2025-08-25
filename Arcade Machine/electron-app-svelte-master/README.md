@@ -6,11 +6,19 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
 ## Features
 
 - Browse and launch games from a local folder.
-- Automatically detects `.exe` and `.lnk` (Windows shortcuts) files in the `Desktop/game` folder.
+- Integrates with RetroArch to run supported ROM files.
+- Automatically detects `ROMS`, `.exe` and `.lnk` (Windows shortcuts) files in the `Desktop/game` folder.
 - Displays custom images for games if available. These images should be placed in the `Desktop/game` folder with the same name as the game executable.
-- Cross-platform support for Windows, macOS, and Linux.
+- Support for Windows
 
----
+## supported file types
+- `.exe` files
+- `.lnk` files (Windows shortcuts)
+- RetroArch ROM files (see supported formats below)
+
+### Supported RetroArch ROM formats:
+-  smc files (SNES ROMs)
+
 
 
 ## Setup Instructions
@@ -24,32 +32,17 @@ Retro Arcade Collection is an Electron-based application built with Svelte 4 and
    ```bash
    npm install
    ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-4. Build and Run the Electron application:
+4. Run dev Electron application:
    ```bash
    npm run electron
-   ```
 
-
-## build exe Instructions
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd electron-app-svelte-master
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. build app:
+4. build app:
    ```bash
    npm run electron-pack
    ```
+
+
+## Usage Instructions
 
 
 1)	Make a folder on the desktop called “Games”, if there is not folder when you open the program it will make the folder
