@@ -20,4 +20,13 @@ contextBridge.exposeInMainWorld('electronAPI', {
   removeGamesUpdatedListener: () => {
     ipcRenderer.removeAllListeners('games-updated');
   }
+    ,
+
+  // New APIs for folder/path selection and config
+  chooseGamesFolder: () => ipcRenderer.invoke('choose-games-folder'),
+  chooseRetroarchPath: () => ipcRenderer.invoke('choose-retroarch-path'),
+  getGamesFolderPath: () => ipcRenderer.invoke('get-games-folder-path'),
+  getRetroarchPath: () => ipcRenderer.invoke('get-retroarch-path'),
+  setGamesFolderPath: (path) => ipcRenderer.invoke('set-games-folder-path', path),
+  setRetroarchPath: (path) => ipcRenderer.invoke('set-retroarch-path', path)
 });

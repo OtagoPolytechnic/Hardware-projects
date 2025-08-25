@@ -18,6 +18,35 @@ const PATHS = {
   distHtml: path.join(__dirname, '../dist/index.html')
 };
 
+// Config file for storing user paths
+const CONFIG_PATH = path.join(app.getPath('userData'), 'arcade-config.json');
+
+function readConfig() {
+  try {
+    if (fsSync.existsSync(CONFIG_PATH)) {
+      const raw = fsSync.readFileSync(CONFIG_PATH, 'utf-8');
+      return JSON.parse(raw);
+    }
+  } catch (e) { console.error('Failed to read config', e); }
+  return {};
+}
+
+function writeConfig(newConfig) {
+  try {
+    fsSync.writeFileSync(CONFIG_PATH, JSON.stringify(newConfig, null, 2));
+  } catch (e) { console.error('Failed to write config', e); }
+}
+
+function getGamesFolderPath() {
+  const config = readConfig();
+  return config.gamesFolder || PATHS.games;
+}
+
+function getRetroarchPath() {
+  const config = readConfig();
+  return config.retroarchPath || retroarchExe;
+}
+
 // Window configuration
 const WINDOW_CONFIG = {
   width: 1200,
@@ -40,6 +69,7 @@ const handleError = (operation, error) => {
 
 // Game scanning function
 async function scanGamesFolder(folderPath) {
+  folderPath = folderPath || getGamesFolderPath();
   // Ensure the folder exists, create if not
   try {
     await fs.access(folderPath);
@@ -122,8 +152,9 @@ app.on('web-contents-created', (event, contents) => {
 
 
 // IPC Handlers for game management
-ipcMain.handle('get-games-from-folder', () => 
-  scanGamesFolder(PATHS.games).catch(err => handleError('scanning games folder', err))
+
+ipcMain.handle('get-games-from-folder', (event, folderPath) => 
+  scanGamesFolder(folderPath || getGamesFolderPath()).catch(err => handleError('scanning games folder', err))
 );
 
 // Handle opening game files
@@ -144,16 +175,47 @@ ipcMain.handle('open-exe-path', async (event, gamePath) => {
 
 // run roms via retroarch
 ipcMain.handle('run-retroarch-rom', async (event, romPath, corePath) => {
-
-  const retroarchExist = fsSync.existsSync(retroarchExe);
+  const retroarchExePath = getRetroarchPath();
+  const retroarchExist = fsSync.existsSync(retroarchExePath);
   if (!retroarchExist) {
-    console.error(`RetroArch executable not found at: ${retroarchExe}`);
+    console.error(`RetroArch executable not found at: ${retroarchExePath}`);
     return false;
   }
-
-  // Launch RetroArch with the specified core and ROM 
-  //EG: (C:\RetroArch-Win64\retroarch.exe -L <corePath> <romPath>)
-  spawn(retroarchExe, ['-L', corePath, romPath], { detached: false, stdio: 'ignore' });
+  spawn(retroarchExePath, ['-L', corePath, romPath], { detached: false, stdio: 'ignore' });
   console.log(`RetroArch launched with core: ${corePath} and ROM: ${romPath}`);
   return true;
+});
+
+// IPC handlers for folder/path selection and config
+ipcMain.handle('choose-games-folder', async () => {
+  const result = await dialog.showOpenDialog({ properties: ['openDirectory'] });
+  if (result.canceled || !result.filePaths[0]) return null;
+  const config = readConfig();
+  config.gamesFolder = result.filePaths[0];
+  writeConfig(config);
+  return config.gamesFolder;
+});
+
+ipcMain.handle('choose-retroarch-path', async () => {
+  const result = await dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Executable', extensions: ['exe'] }] });
+  if (result.canceled || !result.filePaths[0]) return null;
+  const config = readConfig();
+  config.retroarchPath = result.filePaths[0];
+  writeConfig(config);
+  return config.retroarchPath;
+});
+
+ipcMain.handle('get-games-folder-path', () => getGamesFolderPath());
+ipcMain.handle('get-retroarch-path', () => getRetroarchPath());
+ipcMain.handle('set-games-folder-path', (event, path) => {
+  const config = readConfig();
+  config.gamesFolder = path;
+  writeConfig(config);
+  return config.gamesFolder;
+});
+ipcMain.handle('set-retroarch-path', (event, path) => {
+  const config = readConfig();
+  config.retroarchPath = path;
+  writeConfig(config);
+  return config.retroarchPath;
 });
