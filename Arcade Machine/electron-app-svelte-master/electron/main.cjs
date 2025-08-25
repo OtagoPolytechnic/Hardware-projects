@@ -18,7 +18,7 @@ const PATHS = {
   distHtml: path.join(__dirname, '../dist/index.html')
 };
 
-// Config file for storing user paths
+// file get saved in appdata folder
 const CONFIG_PATH = path.join(app.getPath('userData'), 'arcade-config.json');
 
 function readConfig() {
@@ -49,13 +49,11 @@ function getRetroarchPath() {
 
 // Window configuration
 const WINDOW_CONFIG = {
-  width: 1200,
-  height: 800,
   webPreferences: {
     nodeIntegration: false,
-    contextIsolation: true,
+    contextIsolation: true, 
     enableRemoteModule: false,
-    webSecurity: false,
+    webSecurity: true,
     preload: PATHS.preload
   },
   icon: PATHS.icon
@@ -152,7 +150,6 @@ app.on('web-contents-created', (event, contents) => {
 
 
 // IPC Handlers for game management
-
 ipcMain.handle('get-games-from-folder', (event, folderPath) => 
   scanGamesFolder(folderPath || getGamesFolderPath()).catch(err => handleError('scanning games folder', err))
 );
@@ -205,14 +202,20 @@ ipcMain.handle('choose-retroarch-path', async () => {
   return config.retroarchPath;
 });
 
+
+
 ipcMain.handle('get-games-folder-path', () => getGamesFolderPath());
+
 ipcMain.handle('get-retroarch-path', () => getRetroarchPath());
+
 ipcMain.handle('set-games-folder-path', (event, path) => {
   const config = readConfig();
   config.gamesFolder = path;
   writeConfig(config);
   return config.gamesFolder;
 });
+
+
 ipcMain.handle('set-retroarch-path', (event, path) => {
   const config = readConfig();
   config.retroarchPath = path;

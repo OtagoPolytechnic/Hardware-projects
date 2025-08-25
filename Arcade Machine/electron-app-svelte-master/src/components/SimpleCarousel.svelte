@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import GameCard from './GameCard.svelte';
   import CarouselControls from './CarouselControls.svelte';
-  import { coreMap } from '../../electron/coremap.cjs';
+  import { supportedRoms } from '../../electron/coremap.cjs';
 
   export let games = [];
   
@@ -48,7 +48,7 @@
     const ext = game.path.split('.').pop().toLowerCase();
 
     // looks at extension to check if rom
-    const isROM = coreMap[ext];
+    const isROM = supportedRoms[ext];
     if (isROM) {
       window.electronAPI.runRetroarchRom(game.path, isROM);
     } else {
