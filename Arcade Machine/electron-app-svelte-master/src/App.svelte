@@ -31,7 +31,10 @@
 			<p>if you want cover art add a image with the same name as the game to the folder</p>
 
 		{/if}
-			<SimpleCarousel {games} />
+		
+	 	<SimpleCarousel {games} />
+
+		<!-- nav  -->
 
 	</main>
 <style>

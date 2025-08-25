@@ -4,6 +4,10 @@ const fs = require('fs').promises;
 const os = require('os');
 const isDev = process.env.NODE_ENV === 'development';
 
+// Set your RetroArch executable path here
+const retroarchExe = 'C:\\\RetroArch-Win64\\retroarch.exe';
+
+
 function createWindow() {
   // Create the browser window
   const mainWindow = new BrowserWindow({
@@ -77,10 +81,10 @@ ipcMain.handle('get-games-from-folder', async () => {
     const games = [];
     const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
     
-    // Find all executable files and shortcuts
+    // Find all executable files, shortcuts, and zip files
     const gameFiles = files.filter(file => {
       const ext = path.extname(file).toLowerCase();
-      return ext === '.exe' || ext === '.lnk';
+      return ext === '.exe' || ext === '.lnk' || ext === '.zip';
     });
     
     for (const file of gameFiles) {
@@ -194,9 +198,10 @@ async function getGamesFromFolder() {
     const games = [];
     const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
     
+    // Find all executable files, shortcuts, and zip files
     const gameFiles = files.filter(file => {
       const ext = path.extname(file).toLowerCase();
-      return ext === '.exe' || ext === '.lnk';
+      return ext === '.exe' || ext === '.lnk' || ext === '.zip';
     });
     
     for (const file of gameFiles) {
@@ -228,3 +233,19 @@ async function getGamesFromFolder() {
     return [];
   }
 }
+
+// Add IPC handler for running PowerShell script
+ipcMain.handle('run-retroarch-rom', async (event, romPath, corePath) => {
+  const { spawn } = require('child_process');
+  const fsSync = require('fs');
+
+  // Check if RetroArch exists
+  if (!fsSync.existsSync(retroarchExe)) {
+    console.error(`RetroArch executable not found at: ${retroarchExe}`);
+    return false;
+  }
+  const args = ['-L', corePath, romPath];
+  spawn(retroarchExe, args, { detached: true, stdio: 'ignore' });
+  console.log(`RetroArch launched with core: ${corePath} and ROM: ${romPath}`);
+  return true;
+});

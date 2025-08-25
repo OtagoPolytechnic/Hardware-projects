@@ -2,6 +2,7 @@
   export let activeIndex;
   export let totalGames;
   export let onLaunch;
+  
 </script>
 
 <div class="controls">
