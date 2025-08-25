@@ -37,22 +37,13 @@
 
   // Map ROM extensions to RetroArch core DLL paths
   const coreMap = {
-    nes: 'C:\\Program Files\\RetroArch\\cores\\nestopia_libretro.dll',
-    sfc: 'C:\\Program Files\\RetroArch\\cores\\snes9x_libretro.dll',
-    smc: 'C:\\Program Files\\RetroArch\\cores\\snes9x_libretro.dll',
-    gba: 'C:\\Program Files\\RetroArch\\cores\\mgba_libretro.dll',
-    gb:  'C:\\Program Files\\RetroArch\\cores\\gambatte_libretro.dll',
-    gbc: 'C:\\Program Files\\RetroArch\\cores\\gambatte_libretro.dll',
-    gen: 'C:\\Program Files\\RetroArch\\cores\\genesis_plus_gx_libretro.dll',
-    md:  'C:\\Program Files\\RetroArch\\cores\\genesis_plus_gx_libretro.dll',
-    zip: 'C:\\Program Files\\RetroArch\\cores\\genesis_plus_gx_libretro.dll', // Use Genesis core for zip files
-    // Add more mappings as needed
+    smc: 'C:\\RetroArch-Win64\\cores\\snes9x2002_libretro.dll',
   };
 
   function launchGame() {
     const game = games[activeIndex];
     if (!game) return;
-    
+
     const ext = game.path.split('.').pop().toLowerCase();
 
     if (coreMap[ext]) {

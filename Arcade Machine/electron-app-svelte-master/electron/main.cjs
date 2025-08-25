@@ -81,10 +81,11 @@ ipcMain.handle('get-games-from-folder', async () => {
     const games = [];
     const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
     
-    // Find all executable files, shortcuts, and zip files
+    // Supported extensions for carousel (add more as needed)
+    const supportedExts = ['.exe', '.lnk','.smc', '.nes', '.sfc', '.gba', '.gb', '.gbc', '.gen', '.md'];
     const gameFiles = files.filter(file => {
       const ext = path.extname(file).toLowerCase();
-      return ext === '.exe' || ext === '.lnk' || ext === '.zip';
+      return supportedExts.includes(ext);
     });
     
     for (const file of gameFiles) {
@@ -198,10 +199,10 @@ async function getGamesFromFolder() {
     const games = [];
     const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
     
-    // Find all executable files, shortcuts, and zip files
+    const supportedExts = ['.exe', '.lnk', '.zip', '.smc', '.nes', '.sfc', '.gba', '.gb', '.gbc', '.gen', '.md'];
     const gameFiles = files.filter(file => {
       const ext = path.extname(file).toLowerCase();
-      return ext === '.exe' || ext === '.lnk' || ext === '.zip';
+      return supportedExts.includes(ext);
     });
     
     for (const file of gameFiles) {
