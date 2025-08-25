@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import SimpleCarousel from './components/SimpleCarousel.svelte';
+	import SettingsBar from './components/SettingsBar.svelte';
 
 	let games = [];
 	let isLoading = true;
@@ -9,12 +10,13 @@
 
 	onMount(async () => {
 		await loadGames();
-		gamesFolder = await window.electronAPI.getGamesFolderPath();
-		retroarchPath = await window.electronAPI.getRetroarchPath();
+
 	});
 
 	async function loadGames() {
 		try {
+			gamesFolder = await window.electronAPI.getGamesFolderPath();
+			retroarchPath = await window.electronAPI.getRetroarchPath();
 			games = await window.electronAPI.getGamesFromFolder(gamesFolder);
 			isLoading = false;
 		} catch (error) {
@@ -38,20 +40,14 @@
 		}
 	}
 </script>
-	<main class="app-container" >
-		<div class="settings-bar">
-			<div>
-				<label>Games Folder:</label>
-				<input type="text" bind:value={gamesFolder} readonly />
-				<button on:click={chooseGamesFolder}>Choose Folder</button>
-			</div>
-			<div>
-				<label>RetroArch Path:</label>
-				<input type="text" bind:value={retroarchPath} readonly />
-				<button on:click={chooseRetroarchPath}>Choose Path</button>
-			</div>
-		</div>
-		<h1>Arcade</h1>
+<main class="app-container" >
+	<SettingsBar
+		{gamesFolder}
+		{retroarchPath}
+		on:chooseGamesFolder={chooseGamesFolder}
+		on:chooseRetroarchPath={chooseRetroarchPath}
+	/>
+	<h1>Arcade</h1>
 		{#if isLoading}
 			<div class="loading">Loading...</div>
 		{/if}
@@ -78,39 +74,7 @@
 		outline: none;
 	}
 
-	.settings-bar {
-		display: flex;
-		gap: 2em;
-		margin-bottom: 2em;
-		justify-content: center;
-		align-items: center;
-	}
-	.settings-bar label {
-		font-weight: bold;
-		margin-right: 0.5em;
-	}
-	.settings-bar input {
-		width: 260px;
-		padding: 0.3em;
-		margin-right: 0.5em;
-		border-radius: 4px;
-		border: 1px solid #444;
-		background: #222;
-		color: #fff;
-	}
-	.settings-bar button {
-		background: #00ffff;
-		color: #1a1a2e;
-		border: none;
-		border-radius: 4px;
-		padding: 0.4em 1em;
-		font-weight: bold;
-		cursor: pointer;
-		transition: background 0.2s;
-	}
-	.settings-bar button:hover {
-		background: #00bfff;
-	}
+
 
 	main {
 		width: 100%;
