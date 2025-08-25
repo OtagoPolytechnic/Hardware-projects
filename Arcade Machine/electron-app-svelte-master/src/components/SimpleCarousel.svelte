@@ -2,7 +2,8 @@
   import { onMount } from 'svelte';
   import GameCard from './GameCard.svelte';
   import CarouselControls from './CarouselControls.svelte';
-  
+  import { coreMap } from '../../electron/coremap.cjs';
+
   export let games = [];
   
   let activeIndex = 0;
@@ -35,19 +36,21 @@
     activeIndex = (activeIndex - 1 + games.length) % games.length;
   }
 
-  // Map ROM extensions to RetroArch core DLL paths
-  const coreMap = {
-    smc: 'C:\\RetroArch-Win64\\cores\\snes9x2002_libretro.dll',
-  };
-
   function launchGame() {
     const game = games[activeIndex];
-    if (!game) return;
 
+    if (!game) {
+      console.log('No game found');
+      return;
+    }
+
+    // Get the file extension
     const ext = game.path.split('.').pop().toLowerCase();
 
-    if (coreMap[ext]) {
-      window.electronAPI.runRetroarchRom(game.path, coreMap[ext]);
+    // looks at extension to check if rom
+    const isROM = coreMap[ext];
+    if (isROM) {
+      window.electronAPI.runRetroarchRom(game.path, isROM);
     } else {
       window.electronAPI.openExePath(game.path);
     }

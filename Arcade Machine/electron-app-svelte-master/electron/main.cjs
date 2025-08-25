@@ -3,33 +3,100 @@ const path = require('path');
 const fs = require('fs').promises;
 const os = require('os');
 const isDev = process.env.NODE_ENV === 'development';
+const { spawn } = require('child_process');
+const fsSync = require('fs');
 
-// Set your RetroArch executable path here
-const retroarchExe = 'C:\\\RetroArch-Win64\\retroarch.exe';
+// Import paths and supported types
+const { retroarchExe, supportedImageTypes, supportedExts } = require('./coremap.cjs');
 
+// Constants
+const PATHS = {
+  desktop: path.join(os.homedir(), 'Desktop'),
+  get games() { return path.join(this.desktop, 'Games') },
+  preload: path.join(__dirname, 'preload.cjs'),
+  icon: path.join(__dirname, '../public/favicon.ico'),
+  distHtml: path.join(__dirname, '../dist/index.html')
+};
 
-function createWindow() {
-  // Create the browser window
-  const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
-      enableRemoteModule: false,
-      webSecurity: false, // Allow loading local files
-      preload: path.join(__dirname, 'preload.cjs')
-    },
-    icon: path.join(__dirname, '../public/favicon.ico')
+// Window configuration
+const WINDOW_CONFIG = {
+  width: 1200,
+  height: 800,
+  webPreferences: {
+    nodeIntegration: false,
+    contextIsolation: true,
+    enableRemoteModule: false,
+    webSecurity: false,
+    preload: PATHS.preload
+  },
+  icon: PATHS.icon
+};
+
+// Error handler
+const handleError = (operation, error) => {
+  console.error(`Error during ${operation}:`, error);
+  return [];
+};
+
+// Game scanning function
+async function scanGamesFolder(folderPath) {
+  // Ensure the folder exists, create if not
+  try {
+    await fs.access(folderPath);
+  } catch {
+    await fs.mkdir(folderPath, { recursive: true });
+    return [];
+  }
+
+  // Read all files in the folder
+  const files = await fs.readdir(folderPath);
+
+  // Only keep files with supported extensions
+  const gameFiles = files.filter(file => {
+    const ext = path.extname(file).toLowerCase();
+    return supportedExts.includes(ext);
   });
 
-  // Load the app
+  // Map each game file to an object with name, path, and image
+  const games = await Promise.all(
+    gameFiles.map(async file => {
+      const filePath = path.join(folderPath, file);
+      const baseName = path.basename(file, path.extname(file));
+      const image = await findMatchingImage(folderPath, baseName);
+
+      return {
+        name: baseName,
+        path: filePath,
+        image
+      };
+    })
+  );
+
+  return games;
+}
+
+// Helper function to find matching image
+async function findMatchingImage(folderPath, baseName) {
+  for (const imageExt of supportedImageTypes) {
+    const potentialImagePath = path.join(folderPath, baseName + imageExt);
+    try {
+      await fs.access(potentialImagePath);
+      return potentialImagePath;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
+function createWindow() {
+  const mainWindow = new BrowserWindow(WINDOW_CONFIG);
+
   if (isDev) {
     mainWindow.loadURL('http://localhost:5173');
-    // Open DevTools in development
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    mainWindow.loadFile(PATHS.distHtml);
   }
 }
 
@@ -45,11 +112,6 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
 
 // Security: Prevent new window creation
 app.on('web-contents-created', (event, contents) => {
@@ -60,193 +122,38 @@ app.on('web-contents-created', (event, contents) => {
 
 
 // IPC Handlers for game management
-ipcMain.handle('get-games-from-folder', async () => {
-  try {
-    // Look for games folder on desktop
-    const desktopPath = path.join(os.homedir(), 'Desktop');
-    const gamesFolder = path.join(desktopPath, 'Games');
-    
-    console.log('Looking for games in:', gamesFolder);
-    
-    // Check if games folder exists
-    try {
-      await fs.access(gamesFolder);
-    } catch (error) {
-      console.log('Games folder not found, creating it...');
-      await fs.mkdir(gamesFolder, { recursive: true });
-      return [];
-    }
-    
-    const files = await fs.readdir(gamesFolder);
-    const games = [];
-    const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
-    
-    // Supported extensions for carousel (add more as needed)
-    const supportedExts = ['.exe', '.lnk','.smc', '.nes', '.sfc', '.gba', '.gb', '.gbc', '.gen', '.md'];
-    const gameFiles = files.filter(file => {
-      const ext = path.extname(file).toLowerCase();
-      return supportedExts.includes(ext);
-    });
-    
-    for (const file of gameFiles) {
-      const filePath = path.join(gamesFolder, file);
-      const baseName = path.basename(file, path.extname(file));
-
-      // Look for matching image file
-      let imageUrl = null;
-      for (const imageExt of supportedImageTypes) {
-        const potentialImagePath = path.join(gamesFolder, baseName + imageExt);
-        try {
-          await fs.access(potentialImagePath);
-          imageUrl = potentialImagePath; // Use original path
-          break;
-        } catch (error) {
-          // Image not found, continue
-        }
-      }
-
-      games.push({
-        name: baseName,
-        path: filePath,
-        image: imageUrl
-      });
-    }
-
-    console.log('Found games:', games);
-    return games;
-  } catch (error) {
-    console.error('Error reading games folder:', error);
-    return [];
-  }
-});
+ipcMain.handle('get-games-from-folder', () => 
+  scanGamesFolder(PATHS.games).catch(err => handleError('scanning games folder', err))
+);
 
 // Handle opening game files
 ipcMain.handle('open-exe-path', async (event, gamePath) => {
   try {
-    console.log('Opening game:', gamePath);
     const ext = path.extname(gamePath).toLowerCase();
-    
-    if (ext === '.lnk') {
-      // For shortcuts, use shell.openPath which handles .lnk files
-      await shell.openPath(gamePath);
-    } else if (ext === '.exe') {
-      // For executables, use shell.openPath as well
+
+    if (supportedExts.includes(ext)) {
       await shell.openPath(gamePath);
     } else {
       console.error('Unsupported file type:', ext);
     }
   } catch (error) {
-    console.error('Error opening game:', error);
+    handleError('opening game', error);
   }
 });
 
 
-// Handle choosing an executable file
-ipcMain.handle('choose-exe', async () => {
-  try {
-    const result = await dialog.showOpenDialog({
-      properties: ['openFile'],
-      filters: [
-        { name: 'Executable Files', extensions: ['exe'] },
-        { name: 'Shortcut Files', extensions: ['lnk'] },
-        { name: 'All Supported', extensions: ['exe', 'lnk'] }
-      ]
-    });
-    
-    if (!result.canceled && result.filePaths.length > 0) {
-      const sourcePath = result.filePaths[0];
-      const fileName = path.basename(sourcePath);
-      const desktopPath = path.join(os.homedir(), 'Desktop');
-      const gamesFolder = path.join(desktopPath, 'game');
-      const destPath = path.join(gamesFolder, fileName);
-      
-      // Ensure games folder exists
-      await fs.mkdir(gamesFolder, { recursive: true });
-      
-      // Copy the file to games folder
-      await fs.copyFile(sourcePath, destPath);
-      
-      console.log('Game added:', destPath);
-      
-      // Notify renderer about games update
-      const mainWindow = BrowserWindow.getAllWindows()[0];
-      if (mainWindow) {
-        const games = await getGamesFromFolder();
-        mainWindow.webContents.send('games-updated', games);
-      }
-      
-      return destPath;
-    }
-  } catch (error) {
-    console.error('Error choosing game file:', error);
-  }
-});
-
-// Helper function to get games (reused in choose-exe handler)
-async function getGamesFromFolder() {
-  try {
-    const desktopPath = path.join(os.homedir(), 'Desktop');
-    const gamesFolder = path.join(desktopPath, 'game');
-    
-    try {
-      await fs.access(gamesFolder);
-    } catch (error) {
-      await fs.mkdir(gamesFolder, { recursive: true });
-      return [];
-    }
-    
-    const files = await fs.readdir(gamesFolder);
-    const games = [];
-    const supportedImageTypes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
-    
-    const supportedExts = ['.exe', '.lnk', '.zip', '.smc', '.nes', '.sfc', '.gba', '.gb', '.gbc', '.gen', '.md'];
-    const gameFiles = files.filter(file => {
-      const ext = path.extname(file).toLowerCase();
-      return supportedExts.includes(ext);
-    });
-    
-    for (const file of gameFiles) {
-      const filePath = path.join(gamesFolder, file);
-      const baseName = path.basename(file, path.extname(file));
-      
-      let imageUrl = null;
-      for (const imageExt of supportedImageTypes) {
-        const potentialImagePath = path.join(gamesFolder, baseName + imageExt);
-        try {
-          await fs.access(potentialImagePath);
-          imageUrl = potentialImagePath; // Use original path
-          break;
-        } catch (error) {
-          // Image not found, continue
-        }
-      }
-      
-      games.push({
-        name: baseName,
-        path: filePath,
-        image: imageUrl
-      });
-    }
-    
-    return games;
-  } catch (error) {
-    console.error('Error reading games folder:', error);
-    return [];
-  }
-}
-
-// Add IPC handler for running PowerShell script
+// run roms via retroarch
 ipcMain.handle('run-retroarch-rom', async (event, romPath, corePath) => {
-  const { spawn } = require('child_process');
-  const fsSync = require('fs');
 
-  // Check if RetroArch exists
-  if (!fsSync.existsSync(retroarchExe)) {
+  const retroarchExist = fsSync.existsSync(retroarchExe);
+  if (!retroarchExist) {
     console.error(`RetroArch executable not found at: ${retroarchExe}`);
     return false;
   }
-  const args = ['-L', corePath, romPath];
-  spawn(retroarchExe, args, { detached: true, stdio: 'ignore' });
+
+  // Launch RetroArch with the specified core and ROM 
+  //EG: (C:\RetroArch-Win64\retroarch.exe -L <corePath> <romPath>)
+  spawn(retroarchExe, ['-L', corePath, romPath], { detached: false, stdio: 'ignore' });
   console.log(`RetroArch launched with core: ${corePath} and ROM: ${romPath}`);
   return true;
 });
