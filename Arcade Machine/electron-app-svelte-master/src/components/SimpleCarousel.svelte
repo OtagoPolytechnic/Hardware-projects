@@ -2,14 +2,20 @@
   import { onMount } from 'svelte';
   import GameCard from './GameCard.svelte';
   import CarouselControls from './CarouselControls.svelte';
-  import { supportedRoms } from '../../electron/coremap.cjs';
 
   export let games = [];
   
   let activeIndex = 0;
+  let supportedRoms = {};
   
-  // Handle keyboard navigation
-  onMount(() => {
+  // Load supported ROMs on mount
+  onMount(async () => {
+    try {
+      supportedRoms = await window.electronAPI.getSupportedRoms();
+    } catch (error) {
+      console.error('Failed to load supported ROMs:', error);
+    }
+    
     const handleKeydown = (e) => {
       if (e.key === 'ArrowLeft' || e.key === 'a') {
         goToPrev();
@@ -48,9 +54,9 @@
     const ext = game.path.split('.').pop().toLowerCase();
 
     // looks at extension to check if rom
-    const isROM = supportedRoms[ext];
-    if (isROM) {
-      window.electronAPI.runRetroarchRom(game.path, isROM);
+    const coreFileName = supportedRoms[ext];
+    if (coreFileName) {
+      window.electronAPI.runRetroarchRom(game.path, coreFileName);
     } else {
       window.electronAPI.openExePath(game.path);
     }

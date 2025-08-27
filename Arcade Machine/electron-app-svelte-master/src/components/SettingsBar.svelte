@@ -1,7 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	export let gamesFolder = '';
-	export let retroarchPath = '';
+	export let retroarchFolder = '';
 	const dispatch = createEventDispatcher();
 
 	function handleChooseGamesFolder() {
@@ -20,7 +20,7 @@
 	</div>
 	<div>
 		<label for="retroarch-path-input">RetroArch Path:</label>
-		<input id="retroarch-path-input" type="text" value={retroarchPath} readonly />
+		<input id="retroarch-path-input" type="text" value={retroarchFolder} readonly />
 		<button on:click={handleChooseRetroarchPath}>Choose Path</button>
 	</div>
 </div>

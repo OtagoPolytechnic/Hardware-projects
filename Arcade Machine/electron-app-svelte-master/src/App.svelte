@@ -6,7 +6,7 @@
 	let games = [];
 	let isLoading = true;
 	let gamesFolder = '';
-	let retroarchPath = '';
+	let retroarchFolder = '';
 
 	onMount(async () => {
 		await loadGames();
@@ -16,7 +16,7 @@
 	async function loadGames() {
 		try {
 			gamesFolder = await window.electronAPI.getGamesFolderPath();
-			retroarchPath = await window.electronAPI.getRetroarchPath();
+			retroarchFolder = await window.electronAPI.getRetroarchPath();
 			games = await window.electronAPI.getGamesFromFolder(gamesFolder);
 			isLoading = false;
 		} catch (error) {
@@ -36,14 +36,16 @@
 	async function chooseRetroarchPath() {
 		const path = await window.electronAPI.chooseRetroarchPath();
 		if (path) {
-			retroarchPath = path;
+			retroarchFolder = path;
+			// Trigger a refresh of the carousel component to update supported ROMs
+			await loadGames();
 		}
 	}
 </script>
 <main class="app-container" >
 	<SettingsBar
 		{gamesFolder}
-		{retroarchPath}
+		{retroarchFolder}
 		on:chooseGamesFolder={chooseGamesFolder}
 		on:chooseRetroarchPath={chooseRetroarchPath}
 	/>

@@ -28,5 +28,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getGamesFolderPath: () => ipcRenderer.invoke('get-games-folder-path'),
   getRetroarchPath: () => ipcRenderer.invoke('get-retroarch-path'),
   setGamesFolderPath: (path) => ipcRenderer.invoke('set-games-folder-path', path),
-  setRetroarchPath: (path) => ipcRenderer.invoke('set-retroarch-path', path)
+  setRetroarchPath: (path) => ipcRenderer.invoke('set-retroarch-path', path),
+  getSupportedRoms: () => ipcRenderer.invoke('get-supported-roms')
 });
