@@ -70,7 +70,6 @@
 	.app-container {
 		background: #1a1a2e;
 		color: #fff;
-		min-height: 100vh;
 		padding: 2em;
 		font-family: Arial, sans-serif;
 		outline: none;
@@ -79,8 +78,6 @@
 
 
 	main {
-		width: 100%;
-		height: 100%;
 		text-align: center;
 	}
 

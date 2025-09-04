@@ -8,7 +8,8 @@ function getRetroArchPaths(retroarchBaseDir = defaultRetroarch) {
     const retroarchCore = `${retroarchBaseDir}\\cores\\`;
     
     const supportedRoms = { // this is the supported roms - just filenames
-        smc: `snes9x2002_libretro.dll`,
+        smc: `snes9x2005_plus_libretro.dll`,
+        chd: `pcsx_rearmed_libretro.dll`
 
     };
     
