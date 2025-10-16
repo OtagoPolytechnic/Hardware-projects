@@ -38,33 +38,21 @@ Version 3 and 4 were more about the final product we want to produce.
 ## Parts
 |Part|Quantity|Link|
 |---|---|---|
-Arduino Nano		|     	x1 |https://www.jaycar.co.nz/arduino-compatible-nano-board/p/XC4414
-Plastic for 3D print (?) | |
+Arduino		|     	x1 |
 Soil moisture sensor	|	x1| https://www.jaycar.co.nz/duinotech-arduino-compatible-soil-moisture-sensor-module/p/XC4604|
 12V Pump				|	x1| https://www.dicksmith.co.nz/dn/buy/zoestore-42w-mini-brushless-submersible-water-pump-for-fish-tank-aquarium-h15455/|
-Water level sensor 		|	x1| https://epartners.co.nz/products/mp7006|
 Vinyl tube				|	x1|https://www.bunnings.co.nz/pope-clear-vinyl-tubing-3mm-x-5m_p0235184 |
-Transistor 				|	x1| Hardware room |
-5k Ohm Resistor			|	x1| Hardware room |
-1k Ohm Resistor			|	x1| Hardware room|
-12V DC Power Adaptor	|	x1| https://www.dicksmith.co.nz/dn/buy/snap-deal-12v-1a-power-supply-ac-to-dc-adapter-7955281543409/|
-DC Socket Adaptor	|		x1|https://www.jaycar.co.nz/21mm-dc-socket-with-screw-terminals/p/PA3713 |
+12V AC Power Transformer	|	x1| https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.kerry-electronics.com%2FTransformer-transformer-30VA-%2F-30W-12V-AC-%2F-AC-kez0115-ket30&psig=AOvVaw3k_n2wBgM0b2tJKfDkyUYw&ust=1760662753120000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCMDZoYzCp5ADFQAAAAAdAAAAABAM|
 30cm LED Strip			|	x1| Hardware room|
-Buttons    |    x4| Hardware room|
 LCD Screen | x1 |Hardware room|
+Relay | x1||
 
 ## Resources
 |Description|Link|
 |---|---|
-|Solenoid valve hookup vid | https://www.youtube.com/watch?v=ioSYlxHlYdI|
-|Better hookup vid| https://techatronic.com/how-to-make-smart-irrigation-project/ <br/>https://arduinogetstarted.com/tutorials/arduino-automatic-irrigation-system|
-|Plant API | https://perenual.com/docs/api|
 |Basic Soil Moisture Sensor Project|https://projecthub.arduino.cc/Aswinth/soil-moisture-sensor-with-arduino-91c818|
 |Soil Moisture Sensor w led and buzzer|https://projecthub.arduino.cc/nikolaiapalis/simple-soil-moisture-sensor-ec23c7|
-|Light Sensor | https://jxxcarlson.medium.com/measuring-light-intensity-with-arduino-a575765c0862|
-|Basic Irrigation Project | https://www.hackster.io/lakshyajhalani56/smart-irrigation-soil-moisture-sensor-arduino-water-pump-96030e|
-|Irrigation w Pump | https://www.hackster.io/Techatronic/smart-irrigation-system-using-arduino-aaea36|
-|Full System w 3D Design |https://www.instructables.com/Automatic-Smart-Plant-Pot-DIY-3D-Printed-Arduino-S/ <br/> https://www.thingiverse.com/thing:3537287|
+|Irrigation w Pump - basic code and wiring diagram for connecting/testing pump + relay | https://www.hackster.io/Techatronic/smart-irrigation-system-using-arduino-aaea36|
 
 
 			
