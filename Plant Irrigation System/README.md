@@ -1,10 +1,17 @@
 # Smart Plant Irrigation System
+## Purpose
 Plants are living organisms, each with specific needs that must be timely met. Many plant owners see them wither before they can flourish. 
 Since getting plants installed in D-block, it'd make plant maintenance so much easier if it could be automated. The plants are currently watered randomly by anyone who remembers and are stored in the provided pots on dinner plates - not a very efficient setup.
 
 As IT students, we're not gardeners nor do we have knowledge catered to the specific maintenance of Spider plants.
 This is where the idea for an automatic smart home irrigation system came about. 
 A simple system that keeps track of a plant’s moisture and humidity levels with automatic watering to allow plant owners to ensure their plants stay well maintained.
+
+## Instructions
+
+A lot of the files in this directory are for informative purposes only. We currently do not have any code for the system. We created the physical system as seen in the version 1 wiring diagram below with some bare minimum code that turns the relay on and off for demo/testing purposes. 
+
+This started as a solo project for embedded systems, so the files in this directory are from that. We have not implemented a full, working system yet. Use the code and information in the files provided to inform the implementation of the system as outlined in the following sections. I recommend starting with the links in the resources section at the bottom of this page.
 
 ## Design Plan
 **Version 1 Wiring Diagram - Current ver**
