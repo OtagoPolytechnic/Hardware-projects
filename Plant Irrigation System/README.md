@@ -7,21 +7,30 @@ This is where the idea for an automatic smart home irrigation system came about.
 A simple system that keeps track of a plant’s moisture and humidity levels with automatic watering to allow plant owners to ensure their plants stay well maintained.
 
 ## Design Plan
+**Version 1 Wiring Diagram - Current ver**
+
+<img width="800" height="600" src="https://github.com/user-attachments/assets/5e79ad9d-3a42-49b4-b5c9-1449e0347196" />
+
+<hr />
+
+**Version 2 Wiring Diagram**
 
 <img width="800" height="840" alt="5-more-buttons" src="https://github.com/user-attachments/assets/b9bf6377-0ab0-4c08-98a4-dcc377755bca" />
 
+
+<hr />
 
 The smart irrigation system (SIS) has a flexible scope, allowing for many different versions to be ideated. Each version was based on features we could implement and time/material constraints.
 
 **Version 1:**
  - Measures the soil moisture for any given plant and, based on a threshold, determines if the plant needs watering
- - Photoresistor used to detect light level OR humidity sensor
- - Light turns on to let plant owner know that it needs watering/environment change
- - LCD screen displays moisture and environment, if it's dispensing water, ON/OFF, and plant name
- - Watchdog timer and FSM
+ - Automatically dispenses water when needed
 
 **Version 2:**
  - A pump dispenses water based on the threshold
+ - LCD screen displays moisture and environment, if it's dispensing water, ON/OFF, and plant name
+ - Photoresistor used to detect light level OR humidity sensor
+ - Light turns on to let plant owner know that it needs watering/environment change
  - Buttons for user interation/changing info displayed on screen/on and off
 
 **Version 3 (USB Serial communication and LoRa):**
