@@ -13,6 +13,9 @@ A lot of the files in this directory are for informative purposes only. We curre
 
 This started as a solo project for embedded systems, so the files in this directory are from that. We have not implemented a full, working system yet. Use the code and information in the files provided to inform the implementation of the system as outlined in the following sections. I recommend starting with the links in the resources section at the bottom of this page.
 
+To start off, create code that turns the relay on and off (refer to the last link in the resources section for assistance). **DO NOT** mess with the wiring of the relay/pump as they are fragile and should work as is. **ENSURE THE WATER PUMP IS FULLY SUBMERSED IN WATER WHEN TURNING IT ON!!! IT WILL BREAK IF NOT IN WATER.**
+Once you have the relay system working, you can move on to the soil moisture sensor. The idea for this system is for the sensor to detect when the plant needs watering. When it does, the relay should turn on and water the plant until the moisture sensor detects that it's well watered (play around with the threshold of this). The LCD and LED are to display in a user-friendly way the status of the plant, so it's entirely optional.
+
 ## Design Plan
 **Version 1 Wiring Diagram - Current ver**
 
