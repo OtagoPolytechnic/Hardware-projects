@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-dist-electron
+dist-electron/win-unpacked 
+builder-debug.yml
+builder-effective-config.yaml
 
 # Editor directories and files
 .vscode/*

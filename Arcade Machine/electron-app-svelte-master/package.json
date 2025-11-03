@@ -1,7 +1,8 @@
 {
-  "name": "test-arcade",
+  "name": "Retrolog",
+  "publisher": "@OP BIT",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.1",
   "type": "module",
   "main": "electron/main.cjs",
   "homepage": "./",
@@ -11,10 +12,10 @@
     "electron": "vite build && electron .",
     "electron-pack": "npm run build && electron-builder",
     "preelectron-pack": "npm run build"
-  },
+  }, 
   "build": {
-    "appId": "com.testarcade.app",
-    "productName": "Test Arcade",
+    "appId": "com.retrolog.app",
+    "productName": "Retrolog",
     "directories": {
       "output": "dist-electron"
     },
@@ -24,7 +25,7 @@
       "node_modules/**/*"
     ],
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "public/favicon.ico"
     },
     "mac": {
