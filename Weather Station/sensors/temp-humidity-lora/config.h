@@ -6,7 +6,7 @@
 
 
 // How often to send an uplink - consider legal & FUP constraints - see notes
-const uint32_t uplinkIntervalSeconds = 120;    // seconds
+const uint32_t uplinkIntervalSeconds = 300;    // seconds = 5 mins
 
 // JoinEUI - previous versions of LoRaWAN called this AppEUI
 // for development purposes you can use all zeros - see wiki for details
