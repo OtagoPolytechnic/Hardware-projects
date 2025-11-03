@@ -18,6 +18,7 @@
       <div class="image-overlay"></div>
     </div>
     <h3 class="game-title">{game.name}</h3>
+    g
   </div>
   <div class="card-glow"></div>
 </button>
@@ -26,7 +27,8 @@
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
   .game-card {
-    min-width: 220px;
+    width: clamp(180px, 20vw, 220px);
+    min-width: 180px;
     text-align: center;
     padding: 0;
     border: 3px solid transparent;
@@ -59,7 +61,7 @@
   }
 
   .card-inner {
-    padding: 20px;
+    padding: clamp(10px, 2vw, 20px);
     position: relative;
     z-index: 2;
   }
@@ -107,12 +109,12 @@
 
   .image-container {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 2vh, 15px);
   }
 
   .game-card img {
-    width: 160px;
-    height: 160px;
+    width: clamp(120px, 15vw, 160px);
+    height: clamp(120px, 15vw, 160px);
     object-fit: cover;
     border-radius: 12px;
     border: 2px solid rgba(0, 255, 255, 0.3);
@@ -125,8 +127,8 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 160px;
-    height: 160px;
+    width: clamp(120px, 15vw, 160px);
+    height: clamp(120px, 15vw, 160px);
     border-radius: 12px;
     background: linear-gradient(
       45deg,
@@ -156,13 +158,14 @@
 
   .game-title {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
     font-family: 'Orbitron', monospace;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px currentColor;
     transition: all 0.3s ease;
+    word-break: break-word;
   }
 
   .game-card.active .game-title {
@@ -172,5 +175,11 @@
 
   .game-card:hover .game-title {
     text-shadow: 0 0 12px currentColor;
+  }
+
+  @media (max-width: 768px) {
+    .game-card {
+      min-width: 150px;
+    }
   }
 </style>

@@ -102,15 +102,17 @@
 
 <style>
   .carousel {
-    margin: 2em 0;
+    margin: clamp(1em, 3vh, 2em) auto;
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .carousel-border {
     background: linear-gradient(135deg, #0a0015 0%, #1a0033 50%, #0a0015 100%);
-    border: 4px solid #00ffff;
-    border-radius: 20px;
-    padding: 8px;
+    border: clamp(2px, 0.5vw, 4px) solid #00ffff;
+    border-radius: clamp(12px, 2vw, 20px);
+    padding: clamp(4px, 1vw, 8px);
     position: relative;
     overflow: hidden;
     box-shadow: 
@@ -134,7 +136,7 @@
       #00ffff
     );
     background-size: 400% 400%;
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
     z-index: -1;
     animation: borderGlow 4s ease-in-out infinite;
   }
@@ -154,12 +156,12 @@
       transparent 8px
     );
     pointer-events: none;
-    border-radius: 16px;
+    border-radius: clamp(10px, 2vw, 16px);
   }
 
   .carousel-inner {
     background: linear-gradient(135deg, #1a0033 0%, #330066 30%, #1a0033 70%, #0d001a 100%);
-    border-radius: 16px;
+    border-radius: clamp(10px, 2vw, 16px);
     position: relative;
     overflow: hidden;
   }
@@ -183,12 +185,12 @@
 
   .games-container {
     display: flex;
-    padding: 30px;
+    padding: clamp(15px, 3vw, 30px);
     flex: 1;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 350px;
+    height: clamp(280px, 40vh, 350px);
     overflow: hidden;
     /* Enhanced retro scanlines effect */
     background: 
@@ -227,6 +229,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100%;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     left: 0;
@@ -234,12 +237,11 @@
 
   .game-position {
     position: absolute;
-    left: calc(50% - 110px); /* Center of screen minus half card width */
+    left: 50%;
+    transform: translateX(-50%);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-origin: center;
   }
-
-  /* Hide scrollbar styles - no longer needed */
 
   @keyframes borderGlow {
     0%, 100% {
@@ -253,5 +255,22 @@
   @keyframes sweep {
     0% { left: -100%; }
     100% { left: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    .carousel {
+      margin: 1em 0;
+    }
+
+    .games-container {
+      height: clamp(250px, 35vh, 300px);
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .games-container {
+      height: clamp(220px, 30vh, 270px);
+    }
   }
 </style>

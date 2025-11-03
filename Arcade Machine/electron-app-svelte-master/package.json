@@ -25,7 +25,7 @@
       "node_modules/**/*"
     ],
     "win": {
-      "target": "nsis",
+      "target": "portable",
       "icon": "public/favicon.ico"
     },
     "mac": {

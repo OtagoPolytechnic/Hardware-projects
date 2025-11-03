@@ -63,31 +63,39 @@
 		
 	 	<SimpleCarousel {games} />
 
-		<!-- nav  -->
 
 	</main>
 <style>
 	.app-container {
 		background: #1a1a2e;
 		color: #fff;
-		padding: 2em;
+		padding: clamp(0.5em, 2vw, 2em);
 		font-family: Arial, sans-serif;
 		outline: none;
+		min-height: 100vh;
+		box-sizing: border-box;
+		overflow-x: hidden;
 	}
-
-
 
 	main {
 		text-align: center;
+		max-width: 100%;
 	}
 
 	h1 {
-		margin-bottom: 2em;
-		font-size: 2.5rem;
+		margin-bottom: clamp(1em, 3vh, 2em);
+		font-size: clamp(1.5rem, 5vw, 2.5rem);
 	}
 
 	.loading, .no-games {
-		font-size: 1.5rem;
-		margin-top: 2em;
+		font-size: clamp(1rem, 3vw, 1.5rem);
+		margin-top: clamp(1em, 3vh, 2em);
+		padding: 0 1em;
+	}
+
+	@media (max-width: 768px) {
+		.app-container {
+			padding: 0.5em;
+		}
 	}
 </style>
