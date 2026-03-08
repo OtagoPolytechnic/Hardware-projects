@@ -8,9 +8,9 @@ Deploy MeshCore repeaters at Otago Polytechnic (D Block or H Block) and at Turbo
 
 ### Short-Term Goals
 
-- Investigate suitable hardware for MeshCore repeaters with support from Jonah (local Amateur Radio Club member) strengthening and expanding the network. 
+- Investigate suitable hardware for MeshCore repeaters with support from Jonah (local Amateur Radio Club member), who's working to strengthen and expand the network. 
 
-- Work with Turboweb to find a suitable location for a repeater at there business 
+- Work with Turboweb to find a suitable location for a repeater at their business 
 
 ## Coverage
 
@@ -24,6 +24,25 @@ Deploy MeshCore repeaters at Otago Polytechnic (D Block or H Block) and at Turbo
 
 *Estimated coverage area from the Turboweb repeater at 3m*
 
+> Created with MeshCore's tool in their web app
+
+## Community Interest
+
+Jonah, a local amateur radio club member, has been driving efforts to expand the network. His wiki page (linked below) showcases the current network and coverage from potential future repeaters:
+
+https://pad.duckles.nz/PeeG3x85TheVaKoHqI1nHg#
+
+> **Note:** This section was created by ChatGPT by summarizing communications to protect confidentiality.
+
+Based on reviewed correspondence with local stakeholders and amateur radio enthusiasts, there is strong support for expanding MeshCore coverage in Dunedin. Key points:
+
+- **Amateur Radio Club:** Jonah and colleagues have 7–8 repeaters deployed and are exploring grant opportunities to expand the network, potentially partnering with AKV.
+- **AKV Volunteers:** Interested in integrating MeshCore with environmental monitoring projects (e.g., smart traps) and possibly hosting repeaters.
+- **Local Support:** Bob and Paul highlighted Turboweb as a feasible repeater site and see synergy between MeshCore and existing community sensor networks.
+- **Technical Notes:** MeshCore repeaters cost ~$80–120, can be solar-powered, and current deployments provide reliable messaging. Coverage maps exist for current and planned sites, including Turboweb and Otago Polytechnic.
+
+> This summary reflects the main points from the reviewed emails regarding interest, deployment opportunities, and technical feasibility.
+
 ## What is MeshCore?
 MeshCore is a secure, text-based communication system that uses LoRa radio technology.  
 It allows devices to communicate directly with each other over long distances without relying on traditional internet or cellular infrastructure.
@@ -31,7 +50,7 @@ It allows devices to communicate directly with each other over long distances wi
 ## Why does it matter?
 By strengthening the network in Dunedin through the deployment of repeaters, we can expand the reach and reliability of the mesh network.
 
-This enables people to communicate off grid using a decentralised system that continues to operate even when internet or cellular services are unavailable.
+This enables people to communicate off-grid using a decentralised system that continues to operate even when internet or cellular services are unavailable.
 
 Potential uses include:
 - Outdoor and backcountry communication
