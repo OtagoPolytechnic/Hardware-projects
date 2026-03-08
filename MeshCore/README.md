@@ -14,10 +14,17 @@ Deploy MeshCore repeaters at Otago Polytechnic (D Block or H Block) and at Turbo
 
 ## Coverage
 
-### Turboweb
-![Turboweb Coverage](Coverage%20Maps/DBlock.png)
+### Otago Polytechnic D Block Roof
+![DBlock Coverage](Coverage%20Maps/DBlock.png)
 
-*Estimated coverage area from the DBlock repeater at 10m*
+*Estimated coverage area from the D Block repeater at 10m, likely to be worse as some coverage would be blocked by T, G and H Block*
+
+### Otago Polytechnic H Block Roof (alternative to D Block)
+
+![HBlock Coverage](Coverage%20Maps/HBlock.png)
+
+*Estimated coverage area from the H Block repeater at 22m*
+
 
 ### Turboweb
 ![Turboweb Coverage](Coverage%20Maps/Turboweb.png)
